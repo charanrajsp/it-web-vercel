@@ -1,11 +1,15 @@
-const express = require('express')
-const app = express()
-const port = 3000
+import express from "express";
+import cors from "cors";
+import chatRoutes from "./Route/chatRoutes.js"; // Import chatbot routes
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+const app = express();
+app.use(cors());
+app.use(express.json());
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
+app.use("/chat", chatRoutes); // Set up chatbot routes
+
+const PORT =  4000; // Default to port 4000
+
+app.listen(PORT, () => {
+  console.log(`✅ Server running on http://localhost:${PORT}`);
+});
